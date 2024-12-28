@@ -11,4 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
         journalEntries.appendChild(newEntry);
         entryText.value = '';
     });
+
+    // Update to work with routing
+    document.body.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A' && event.target.href.startsWith(window.location.origin)) {
+            event.preventDefault();
+            history.pushState(null, '', event.target.href);
+            router();
+        }
+    });
+
+    router(); // Initialize routing on page load
 });
